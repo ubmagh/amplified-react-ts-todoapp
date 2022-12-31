@@ -1,0 +1,7 @@
+type TODO @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  completed: Boolean
+  date: AWSDateTime!
+}
