@@ -6,6 +6,9 @@ import { DataStore } from '@aws-amplify/datastore';
 import { 
   TODOCreateForm 
 } from './ui-components';
+import { TODOCreateFormInputValues } from './ui-components/TODOCreateForm';
+
+
 
 function App() {
 
@@ -16,16 +19,7 @@ function App() {
     setTodos(models);
   }
 
-  const saveTodo = async ( name:string, date:string, description?:string, completed?:boolean) => {
-    await DataStore.save(
-        new TODO({
-          name, 
-          description,
-          completed,
-        "date": date
-      })
-    );
-  }
+ 
 
   return (
     <div className="App">
@@ -33,14 +27,14 @@ function App() {
         Hello there ! 
         <main style={{ width: "80%", padding: "O% 10%", textAlign :"left", backgroundColor: "white"  }}>
         <div>
-          <TODOCreateForm />
+          <TODOCreateForm  />
         </div>
         <div style={{ margin: "10px", textAlign: "center" }}>
           <button onClick={getTodos}>Get Todos</button>
         </div>
       </main>
       <hr/>
-      <main style={{ width: "80%", padding: "O% 10%", textAlign :"left", backgroundColor: "white"  }}>
+      <main style={{ width: "80%", padding: "O% 10%", textAlign :"left", backgroundColor: "white", color: "black"  }}>
         <div>
           <ul>
             {todos.map((todo) => (
