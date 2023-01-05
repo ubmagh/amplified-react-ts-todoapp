@@ -7,10 +7,23 @@ import {
   TODOCreateForm 
 } from './ui-components';
 import { TODOCreateFormInputValues } from './ui-components/TODOCreateForm';
+import { Amplify } from 'aws-amplify';
+import config from './aws-exports';
+Amplify.configure(config);
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
 
 
-function App() {
+
+
+function App({ signOut }:{ signOut:any}) {
 
   let [todos, setTodos] = React.useState<TODO[]>([])
 
@@ -22,6 +35,12 @@ function App() {
  
 
   return (
+    <View className="App">
+      <Card>
+        <Image src={logo} className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
     <div className="App">
       <header className="App-header">
         Hello there ! 
@@ -48,7 +67,8 @@ function App() {
       </header>
       
     </div>
+    </View>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
